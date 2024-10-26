@@ -13,6 +13,7 @@ List<FormStepsModel> formDataList = const [
     title: "Create Segments",
     label: "Get full control over your audience",
     status: FormStatus.pending,
+    // formWidget: CampaignFormWidget(),
     formWidget: CampaignFormWidget(),
   ),
   FormStepsModel(

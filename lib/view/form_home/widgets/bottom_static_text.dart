@@ -9,7 +9,7 @@ Widget bottomStaticText() {
     text: TextSpan(
       text: "You can ",
       style: TextStyle(
-        color: Colors.grey,
+        color: kGrey,
         fontSize: responsiveFontSize(
           context: navigatorKey.currentContext!,
           baseSize: 15,
@@ -25,7 +25,7 @@ Widget bottomStaticText() {
         TextSpan(
           text: " to change this.",
           style: TextStyle(
-            color: Colors.grey,
+            color: kGrey,
           ),
         ),
       ],
