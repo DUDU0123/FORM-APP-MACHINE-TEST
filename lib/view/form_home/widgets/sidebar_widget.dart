@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_app_machine_task/core/components/text_widget_common.dart';
 import 'package:form_app_machine_task/core/constants/colors.dart';
 import 'package:form_app_machine_task/core/constants/height_width.dart';
 import 'package:form_app_machine_task/core/constants/responsive.dart';
-import 'package:form_app_machine_task/core/utils/form_data_list.dart';
 import 'package:form_app_machine_task/view/form_home/widgets/help_and_contact_part.dart';
 import 'package:form_app_machine_task/view_model/providers/campaign_steps_provider.dart';
 
@@ -36,9 +33,6 @@ class SideBarWidget extends StatelessWidget {
           Expanded(
             child: Consumer(
               builder: (context, ref, child) {
-                // final campaignSteps = ref.watch(campaignStepsProvider.notifier);
-                final campaignStateFn =
-                    ref.watch(campaignStepsProvider.notifier);
                 final campaignState = ref.watch(campaignStepsProvider);
                 return ListView.separated(
                   itemBuilder: (context, index) {

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_app_machine_task/core/components/text_widget_common.dart';
 import 'package:form_app_machine_task/core/constants/colors.dart';
 import 'package:form_app_machine_task/core/constants/height_width.dart';
-import 'package:form_app_machine_task/core/constants/navigator_key.dart';
 import 'package:form_app_machine_task/core/constants/responsive.dart';
 import 'package:form_app_machine_task/core/utils/form_data_list.dart';
 import 'package:form_app_machine_task/core/utils/message_show_helper.dart';
@@ -13,8 +12,6 @@ import 'package:form_app_machine_task/view/form_home/widgets/common_divider.dart
 import 'package:form_app_machine_task/view/form_home/widgets/common_form_text_field.dart';
 import 'package:form_app_machine_task/view/form_home/widgets/common_switch_list_tile.dart';
 import 'package:form_app_machine_task/view_model/providers/campaign_steps_provider.dart';
-import 'package:lottie/lottie.dart';
-
 class CampaignFormWidget extends StatefulWidget {
   const CampaignFormWidget({
     super.key,
