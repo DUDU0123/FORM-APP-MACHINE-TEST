@@ -1,0 +1,4 @@
+enum FormStatus {
+  completed,
+  pending,
+}
