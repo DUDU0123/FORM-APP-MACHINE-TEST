@@ -91,7 +91,14 @@ class FormMethods {
 
   static reset() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(formDataKey, '');
+    Map<String, dynamic> formData = {
+        "subject": null,
+        "preview": null,
+        "fromName": null,
+        "fromEmail": null,
+      };
+    final jsonString = jsonEncode(formData);
+    await prefs.setString(formDataKey, jsonString);
   }
 
   static Future<String?> getDraft() async {
