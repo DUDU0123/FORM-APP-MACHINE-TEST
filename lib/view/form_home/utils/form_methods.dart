@@ -28,34 +28,34 @@ class FormMethods {
     required TextEditingController fromEmail,
     required CampaignStepsNotifier campaignSteps,
   }) async {
-    if (isEmptyFields(
-      subject: subject.text,
-      previewText: previewText.text,
-      fromName: fromName.text,
-      fromEmail: fromEmail.text,
-    )) {
+    if (subject.text.isNotEmpty &&
+        previewText.text.isNotEmpty &&
+        fromName.text.isNotEmpty &&
+        fromEmail.text.isNotEmpty) {
+      if (emailRegex.hasMatch(fromEmail.text)) {
+        await reset();
+        Map<String, dynamic> formData = {
+          "subject": subject.text,
+          "preview": previewText.text,
+          "fromName": fromName.text,
+          "fromEmail": fromEmail.text,
+        };
+        debugPrint(formData.toString());
+        subject.clear();
+        previewText.clear();
+        fromName.clear();
+        fromEmail.clear();
+
+        campaignSteps.goToNextStep();
+      } else {
+        MessageShowhelper.showSnackbar(
+          snackBarContent: "Please enter valid email",
+        );
+      }
+    } else {
       MessageShowhelper.showSnackbar(
         snackBarContent: "Please fill all fields",
       );
-    } else if (!emailRegex.hasMatch(fromEmail.text)) {
-      MessageShowhelper.showSnackbar(
-        snackBarContent: "Please enter valid email",
-      );
-    } else {
-      await reset();
-      Map<String, dynamic> formData = {
-        "subject": subject.text,
-        "preview": previewText.text,
-        "fromName": fromName.text,
-        "fromEmail": fromEmail.text,
-      };
-      debugPrint(formData.toString());
-      subject.text = '';
-      previewText.text = '';
-      fromName.text = '';
-      fromEmail.text = '';
-
-      campaignSteps.goToNextStep();
     }
   }
 
@@ -71,8 +71,7 @@ class FormMethods {
         previewText: previewText.text,
         fromName: fromName.text,
         fromEmail: fromEmail.text)) {
-          MessageShowhelper.showSnackbar(
-          snackBarContent: "Fill all fields");
+      MessageShowhelper.showSnackbar(snackBarContent: "Fill all fields");
     } else {
       Map<String, dynamic> formData = {
         "subject": subject.text,
@@ -92,11 +91,11 @@ class FormMethods {
   static reset() async {
     final prefs = await SharedPreferences.getInstance();
     Map<String, dynamic> formData = {
-        "subject": null,
-        "preview": null,
-        "fromName": null,
-        "fromEmail": null,
-      };
+      "subject": "",
+      "preview": "",
+      "fromName": "",
+      "fromEmail": "",
+    };
     final jsonString = jsonEncode(formData);
     await prefs.setString(formDataKey, jsonString);
   }
