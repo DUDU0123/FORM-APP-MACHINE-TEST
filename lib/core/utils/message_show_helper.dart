@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_app_machine_task/core/components/text_widget_common.dart';
 import 'package:form_app_machine_task/core/constants/colors.dart';
-import 'package:form_app_machine_task/core/constants/navigator_key.dart';
+import 'package:form_app_machine_task/core/constants/keys.dart';
 import 'package:lottie/lottie.dart';
 
 class MessageShowhelper {

@@ -1,25 +1,16 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-
 import 'package:form_app_machine_task/core/enums/enums.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/widgets.dart';
 
-class FormStepsModel extends Equatable {
-  final String title;
-  final String label;
-  final FormStatus status;
-  final Widget formWidget;
-  const FormStepsModel({
-    required this.title,
-    required this.label,
-    required this.status,
-    required this.formWidget,
-  });
+part 'form_steps_model.freezed.dart';
 
-  @override
-  List<Object> get props => [
-        title,
-        label,
-        status,
-        formWidget,
-      ];
+@freezed
+class FormStepsModel with _$FormStepsModel {
+  const factory FormStepsModel({
+    required String title,
+    required String label,
+    required FormStatus status,
+    required Widget formWidget,
+  }) = _FormStepsModel;
 }

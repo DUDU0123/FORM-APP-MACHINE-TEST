@@ -6,12 +6,13 @@ import 'package:form_app_machine_task/core/constants/height_width.dart';
 import 'package:form_app_machine_task/core/constants/responsive.dart';
 import 'package:form_app_machine_task/view/form_home/widgets/sidebar_widget.dart';
 import 'package:form_app_machine_task/view_model/providers/campaign_steps_provider.dart';
-
+const breakPointOne = 1420;
+const breakPointTwo = 1250;
 class FormHome extends StatelessWidget {
   const FormHome({super.key});
   @override
   Widget build(BuildContext context) {
-    bool isBreakPointReached = screenWidth(context: context) > 1420;
+    bool isBreakPointReached = screenWidth(context: context) > breakPointTwo;
     return Scaffold(
       drawer: Drawer(
         child: SideBarWidget(
