@@ -27,7 +27,7 @@ class FormMethods {
     required TextEditingController fromName,
     required TextEditingController fromEmail,
     required CampaignStepsNotifier campaignSteps,
-  }) {
+  }) async {
     if (isEmptyFields(
       subject: subject.text,
       previewText: previewText.text,
@@ -42,10 +42,7 @@ class FormMethods {
         snackBarContent: "Please enter valid email",
       );
     } else {
-      subject.text = '';
-      previewText.text = '';
-      fromName.text = '';
-      fromEmail.text = '';
+      await reset();
       Map<String, dynamic> formData = {
         "subject": subject.text,
         "preview": previewText.text,
@@ -53,6 +50,11 @@ class FormMethods {
         "fromEmail": fromEmail.text,
       };
       debugPrint(formData.toString());
+      subject.text = '';
+      previewText.text = '';
+      fromName.text = '';
+      fromEmail.text = '';
+
       campaignSteps.goToNextStep();
     }
   }
@@ -69,12 +71,14 @@ class FormMethods {
         previewText: previewText.text,
         fromName: fromName.text,
         fromEmail: fromEmail.text)) {
+          MessageShowhelper.showSnackbar(
+          snackBarContent: "Fill all fields");
     } else {
       Map<String, dynamic> formData = {
-        "subject": subject,
-        "preview": previewText,
-        "fromName": fromName,
-        "fromEmail": fromEmail,
+        "subject": subject.text,
+        "preview": previewText.text,
+        "fromName": fromName.text,
+        "fromEmail": fromEmail.text,
         "indexVal": campaignSteps.currentStepIndex
       };
       final prefs = await SharedPreferences.getInstance();
@@ -83,6 +87,11 @@ class FormMethods {
       MessageShowhelper.showSnackbar(
           snackBarContent: "Form drafted successfully");
     }
+  }
+
+  static reset() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(formDataKey, '');
   }
 
   static Future<String?> getDraft() async {

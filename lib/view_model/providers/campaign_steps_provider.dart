@@ -19,11 +19,9 @@ final campaignStepsProvider =
         return CampaignStepsNotifier(decodedData: decodedData);
       },
       loading: () {
-        // Handle loading state if necessary, e.g., returning an empty notifier
         return CampaignStepsNotifier(decodedData: null);
       },
       error: (error, stack) {
-        // Handle the error state
         return CampaignStepsNotifier(decodedData: null);
       },
     );
