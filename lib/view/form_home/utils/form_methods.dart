@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:form_app_machine_task/core/constants/keys.dart';
 import 'package:form_app_machine_task/core/utils/message_show_helper.dart';
+import 'package:form_app_machine_task/model/models/campaign_steps_state.dart';
 import 'package:form_app_machine_task/view_model/providers/campaign_steps_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

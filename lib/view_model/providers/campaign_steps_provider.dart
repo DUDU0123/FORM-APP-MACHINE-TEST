@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:form_app_machine_task/core/utils/form_data_list.dart';
 import 'package:form_app_machine_task/core/utils/message_show_helper.dart';
-import 'package:form_app_machine_task/model/models/form_steps_model.dart';
+import 'package:form_app_machine_task/model/models/campaign_steps_state.dart';
 import 'package:form_app_machine_task/view/form_home/utils/form_methods.dart';
 import 'package:form_app_machine_task/view/form_home/widgets/campaign_form_widget.dart';
 
@@ -28,37 +26,6 @@ final campaignStepsProvider =
   },
 );
 
-class CampaignStepsState {
-  final int currentStepIndex;
-  final bool isForOncePerCustomer;
-  final bool isCustomAudience;
-  final List<FormStepsModel> formDataList;
-  Widget currentWidget;
-
-  CampaignStepsState({
-    required this.currentStepIndex,
-    required this.isForOncePerCustomer,
-    required this.isCustomAudience,
-    required this.formDataList,
-    required this.currentWidget,
-  });
-
-  CampaignStepsState copyWith({
-    int? currentStepIndex,
-    Widget? currentWidget,
-    bool? isForOncePerCustomer,
-    bool? isCustomAudience,
-  }) {
-    return CampaignStepsState(
-      isCustomAudience: isCustomAudience ?? this.isCustomAudience,
-      isForOncePerCustomer: isForOncePerCustomer ?? this.isForOncePerCustomer,
-      currentStepIndex: currentStepIndex ?? this.currentStepIndex,
-      formDataList: formDataList,
-      currentWidget: currentWidget ?? this.currentWidget,
-    );
-  }
-}
-
 class CampaignStepsNotifier extends StateNotifier<CampaignStepsState> {
   CampaignStepsNotifier({
     required Map<String, dynamic>? decodedData,
@@ -66,22 +33,9 @@ class CampaignStepsNotifier extends StateNotifier<CampaignStepsState> {
           isCustomAudience: false,
           isForOncePerCustomer: true,
           currentWidget: const CampaignFormWidget(),
-          currentStepIndex: 0,
+          currentStepIndex: decodedData?['indexVal'] ?? 0,
           formDataList: formDataList,
-        )) {
-    _initialize();
-  }
-
-  Future<void> _initialize() async {
-    final decodedData = await FormMethods.decodeSavedData();
-    if (decodedData != null) {
-      int decodedIndex = decodedData['indexVal'] ??
-          0;
-      state = state.copyWith(
-        currentStepIndex: decodedIndex,
-      );
-    }
-  }
+        ));
 
   void updateCurrentWidget() {
     state = state.copyWith(
