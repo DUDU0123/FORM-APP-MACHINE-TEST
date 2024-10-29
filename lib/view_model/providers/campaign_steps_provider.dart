@@ -76,10 +76,9 @@ class CampaignStepsNotifier extends StateNotifier<CampaignStepsState> {
     final decodedData = await FormMethods.decodeSavedData();
     if (decodedData != null) {
       int decodedIndex = decodedData['indexVal'] ??
-          0; // Adjust this according to your data structure
+          0;
       state = state.copyWith(
         currentStepIndex: decodedIndex,
-        // You can set other relevant fields from decodedData if necessary
       );
     }
   }
